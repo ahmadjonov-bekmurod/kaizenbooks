@@ -27,7 +27,7 @@ class Book(models.Model):
     book_rating = models.FloatField(default=0)
     book_publisher = models.CharField(max_length=255, default=None)
     book_cover = models.ImageField(upload_to='covers/', blank=True, null=True)
-    book_photos = models.ImageField(upload_to='photos/', blank=True, null=True)
+    # book_photos = models.ImageField(upload_to='photos/', blank=True, null=True)
 
     def __str__(self):
         return self.book_name
