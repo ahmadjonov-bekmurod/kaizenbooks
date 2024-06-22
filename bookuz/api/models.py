@@ -19,7 +19,7 @@ class Book(models.Model):
     book_name = models.CharField(max_length=255, default=None, null=False, blank=False)
     book_author = models.ForeignKey(Author, related_name='books', on_delete=models.CASCADE, null=True)
     book_category = models.ForeignKey(Category, related_name='books', on_delete=models.CASCADE, default=None)
-    book_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    book_price = models.IntegerField(default=0)
     book_year = models.IntegerField(default=0)
     book_language = models.CharField(max_length=50, blank=True)
     book_description = models.TextField(blank=True)
