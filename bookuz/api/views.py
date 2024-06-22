@@ -1,6 +1,7 @@
 from rest_framework import viewsets
-from .models import Book, Author, Category, Comment
-from .serializers import BookSerializer, AuthorSerializer, CategorySerializer, CommentSerializer
+from .models import Book, Author, Category, Comment, Carousel
+from .serializers import BookSerializer, AuthorSerializer, CategorySerializer, CommentSerializer, CarouselSerializer
+
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
@@ -17,3 +18,8 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+
+class CarouselViewSet(viewsets.ModelViewSet):
+    queryset = Carousel.objects.all()
+    serializer_class = CarouselSerializer

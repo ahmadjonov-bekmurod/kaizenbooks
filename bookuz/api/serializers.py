@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Book, Author, Category, Comment
+from .models import Book, Author, Category, Comment, Carousel
+
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -33,3 +34,8 @@ class BookSerializer(serializers.ModelSerializer):
             'book_description', 'book_pages_count', 'book_rating', 'book_publisher',
             'book_cover', 'book_photos', 'comments'
         ]
+
+class CarouselSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Carousel
+        fields = '__all__'

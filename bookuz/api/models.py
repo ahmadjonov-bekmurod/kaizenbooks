@@ -39,3 +39,14 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text[:20]
+
+class Carousel(models.Model):
+    image_en = models.ImageField(upload_to='carousel_images/en/', blank=True, null=True)
+    image_ru = models.ImageField(upload_to='carousel_images/ru/', blank=True, null=True)
+    image_uz = models.ImageField(upload_to='carousel_images/uz/', blank=True, null=True)
+    description_en = models.TextField(blank=True, null=True)
+    description_ru = models.TextField(blank=True, null=True)
+    description_uz = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f'Carousel Item {self.id}'
