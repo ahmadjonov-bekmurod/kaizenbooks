@@ -32,7 +32,7 @@ class BookSerializer(serializers.ModelSerializer):
             'id', 'book_name', 'book_author', 'book_author_id', 'book_category',
             'book_category_id', 'book_price', 'book_year', 'book_language',
             'book_description', 'book_pages_count', 'book_rating', 'book_publisher',
-            'book_cover', 'book_photos', 'comments'
+            'book_cover', 'comments'
         ]
 
 class CarouselSerializer(serializers.ModelSerializer):
