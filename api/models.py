@@ -40,6 +40,7 @@ class Comment(models.Model):
     def __str__(self):
         return self.text[:20]
 
+
 class Carousel(models.Model):
     image_en = models.ImageField(upload_to='carousel_images/en/', blank=True, null=True)
     image_ru = models.ImageField(upload_to='carousel_images/ru/', blank=True, null=True)
@@ -54,10 +55,22 @@ class Carousel(models.Model):
 
 class Order(models.Model):
     customer_name = models.CharField(max_length=100)
-    product_name = models.CharField(max_length=100)
-    quantity = models.IntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    delivery_method = models.CharField(max_length=100)
+    address = models.TextField()
+    payment_method = models.CharField(max_length=100)
+    promo_code = models.CharField(max_length=50, blank=True, null=True)
+    order_comment = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.customer_name} - {self.product_name}"
+        return f"Order {self.id} by {self.customer_name}"
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, related_name='order_items', on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.quantity} of {self.book.book_name}"
+
