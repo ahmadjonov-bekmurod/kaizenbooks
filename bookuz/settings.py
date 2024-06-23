@@ -60,7 +60,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 # ]
 
 
-ROOT_URLCONF = 'book.urls'
+ROOT_URLCONF = 'bookuz.urls'
 
 TEMPLATES = [
     {
@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'book.wsgi.application'
+WSGI_APPLICATION = 'bookuz.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
