@@ -25,9 +25,8 @@ SECRET_KEY = 'django-insecure-e-z^n03%v)q0(ega-*9xvx$qkecroyv)-%&&%1b-m9k9&lso__
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["kaizenbooks.pythonanywhere.com"]
+ALLOWED_HOSTS = ["kaizenbooks.pythonanywhere.com", "127.0.0.1"]
 
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -134,3 +133,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
