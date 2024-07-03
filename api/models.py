@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+import random
 
 
 class Category(models.Model):
@@ -27,6 +29,7 @@ class Book(models.Model):
     book_rating = models.FloatField(default=0)
     book_publisher = models.CharField(max_length=255, default=None)
     book_cover = models.ImageField(upload_to='covers/', blank=True, null=True)
+
     # book_photos = models.ImageField(upload_to='photos/', blank=True, null=True)
 
     def __str__(self):
@@ -74,3 +77,26 @@ class OrderItem(models.Model):
     def __str__(self):
         return f"{self.quantity} of {self.book.book_name}"
 
+
+def generate_otp():
+    return ''.join(random.choices('0123456789', k=6))
+
+
+class OTP(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6, default=generate_otp)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_verified = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.otp}"
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=15)
+
+    def __str__(self):
+        return f"{self.user.username} Profile"
