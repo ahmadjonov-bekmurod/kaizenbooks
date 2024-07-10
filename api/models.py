@@ -79,12 +79,12 @@ class OrderItem(models.Model):
 
 
 def generate_otp():
-    return ''.join(random.choices('0123456789', k=6))
+    return ''.join(random.choices('0123456789', k=4))
 
 
 class OTP(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    otp = models.CharField(max_length=6, default=generate_otp)
+    otp = models.CharField(max_length=4, default=generate_otp)
     created_at = models.DateTimeField(auto_now_add=True)
     is_verified = models.BooleanField(default=False)
 
