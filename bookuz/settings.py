@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-e-z^n03%v)q0(ega-*9xvx$qkecroyv)-%&&%1b-m9k9&lso__'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["kaizenbooks.pythonanywhere.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["kaizenbooks.pythonanywhere.com", "127.0.0.1", "193.168.227.244"]
 
 
 INSTALLED_APPS = [
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_filters',
     'corsheaders',
     'rest_framework',
     'api',
@@ -64,6 +65,7 @@ CORS_ALLOWED_ORIGINS = [
 
 ROOT_URLCONF = 'bookuz.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -79,6 +81,16 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
+}
+
 
 WSGI_APPLICATION = 'bookuz.wsgi.application'
 
@@ -157,7 +169,7 @@ JAZZMIN_SETTINGS = {
         {"app": "books"},
     ],
     "usermenu_links": [
-        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        # {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
         {"model": "auth.user"}
     ],
     "show_sidebar": True,

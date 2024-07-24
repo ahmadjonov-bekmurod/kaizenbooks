@@ -1,0 +1,22 @@
+[Unit]
+Description=Kaizen Django Application
+After=network.target
+
+[Service]
+User=kaizen
+Group=kaizen_group
+WorkingDirectory=/home/kaizenbooks/kaizenbooks
+ExecStart=/home/kaizenbooks/kaizenbooks/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/kaizenbooks/kaizenbooks/kaizen.sock kaizenbooks.wsgi:application
+
+# Environment variables
+Environment="DJANGO_SETTINGS_MODULE=kaizenbooks.settings"
+Environment="SECRET_KEY=django-insecure-e-z^n03%v)q0(ega-*9xvx$qkecroyv)-%&&%1b-m9k9&lso__"
+# Environment="DATABASE_URL=your_database_url"
+# Add other environment variables here
+
+# Restart on failure
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

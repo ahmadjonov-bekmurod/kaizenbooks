@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name 193.168.227.244;
+
+    client_max_body_size 100M;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/kaizenbooks/kaizenbooks/bookuz.sock;
+    }
+
+    location /static/ {
+        alias /home/kaizenbooks/kaizenbooks/staticfiles/;
+    }
+
+    location /media/ {
+        alias /home/kaizenbooks/kaizenbooks/media/;
+    }
+}

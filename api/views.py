@@ -1,18 +1,23 @@
-from rest_framework import viewsets
-from .models import Book, Author, Category, Comment, Carousel, Order, OTP
-from .serializers import BookSerializer, AuthorSerializer, CategorySerializer, CommentSerializer, CarouselSerializer, \
-    OrderSerializer, OTPCreateSerializer, OTPVerifySerializer, UserSignUpSerializer
+from .models import Book, Author, Category, Carousel, OTP, Order, OrderItem
+from .serializers import (BookSerializer, AuthorSerializer, CategorySerializer, CarouselSerializer,
+                          OTPCreateSerializer, OTPVerifySerializer, UserSignUpSerializer, OrderSerializer, OrderCreateSerializer)
+from rest_framework.permissions import IsAuthenticated
 
 import requests
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
+from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import BookFilter
 
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = BookFilter
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
@@ -25,11 +30,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
 
 
-class CommentViewSet(viewsets.ModelViewSet):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
-
-
 class CarouselViewSet(viewsets.ModelViewSet):
     queryset = Carousel.objects.all()
     serializer_class = CarouselSerializer
@@ -37,7 +37,12 @@ class CarouselViewSet(viewsets.ModelViewSet):
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+    # permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update']:
+            return OrderCreateSerializer
+        return OrderSerializer
 
 
 class OTPCreateView(APIView):
@@ -87,7 +92,7 @@ class OTPCreateView(APIView):
             headers = {'Authorization': f'Bearer {token}'}
             data = {
                 'mobile_phone': phone_number,
-                'message': f'suhbatchi.uz sayti orqali ro\'yxatdan o\'tish uchun tasdiqlash kodingiz: {otp}',
+                'message': f'Kaizen Books sayti orqali ro\'yxatdan o\'tish uchun tasdiqlash kodingiz: {otp}',
                 'from': '4546'
             }
             response = requests.post(url, headers=headers, data=data)

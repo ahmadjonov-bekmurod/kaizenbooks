@@ -1,0 +1,46 @@
+[2024-07-10 11:20:16 +0300] [10514] [INFO] Starting gunicorn 22.0.0
+[2024-07-10 11:20:16 +0300] [10514] [INFO] Listening at: http://0.0.0.0:8000 (10514)
+[2024-07-10 11:20:16 +0300] [10514] [INFO] Using worker: sync
+[2024-07-10 11:20:16 +0300] [10515] [INFO] Booting worker with pid: 10515
+[2024-07-10 11:20:16 +0300] [10515] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/kaizenbooks/kaizenbooks/venv/lib/python3.10/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/kaizenbooks/kaizenbooks/venv/lib/python3.10/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/kaizenbooks/kaizenbooks/venv/lib/python3.10/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/kaizenbooks/kaizenbooks/venv/lib/python3.10/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/kaizenbooks/kaizenbooks/venv/lib/python3.10/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/kaizenbooks/kaizenbooks/venv/lib/python3.10/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/kaizenbooks/kaizenbooks/venv/lib/python3.10/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'bookuz'
+[2024-07-10 11:20:16 +0300] [10515] [INFO] Worker exiting (pid: 10515)
+[2024-07-10 11:20:16 +0300] [10514] [ERROR] Worker (pid:10515) exited with code 3
+[2024-07-10 11:20:16 +0300] [10514] [ERROR] Shutting down: Master
+[2024-07-10 11:20:16 +0300] [10514] [ERROR] Reason: Worker failed to boot.
+[2024-07-10 11:21:55 +0300] [10545] [INFO] Starting gunicorn 22.0.0
+[2024-07-10 11:21:55 +0300] [10545] [ERROR] Invalid address: ('193.168.227.224', 8000)
+[2024-07-10 11:21:55 +0300] [10545] [ERROR] Retrying in 1 second.
+[2024-07-10 11:21:56 +0300] [10545] [ERROR] Invalid address: ('193.168.227.224', 8000)
+[2024-07-10 11:21:56 +0300] [10545] [ERROR] Retrying in 1 second.
+[2024-07-10 11:21:57 +0300] [10545] [ERROR] Invalid address: ('193.168.227.224', 8000)
+[2024-07-10 11:21:57 +0300] [10545] [ERROR] Retrying in 1 second.
+[2024-07-10 11:21:58 +0300] [10545] [ERROR] Invalid address: ('193.168.227.224', 8000)
+[2024-07-10 11:21:58 +0300] [10545] [ERROR] Retrying in 1 second.
+[2024-07-10 11:21:59 +0300] [10545] [ERROR] Invalid address: ('193.168.227.224', 8000)
+[2024-07-10 11:21:59 +0300] [10545] [ERROR] Retrying in 1 second.
+[2024-07-10 11:22:00 +0300] [10545] [ERROR] Can't connect to ('193.168.227.224', 8000)

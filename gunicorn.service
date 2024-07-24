@@ -1,0 +1,12 @@
+[Unit]
+Description=Gunicorn daemon for Django project
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/home/kaizenbooks/kaizenbooks
+ExecStart=/home/kaizenbooks/kaizenbooks/venv/bin/gunicorn --access-logfile - --workers 1 --bind unix:/home/kaizenbooks/kaizenbooks/bookuz.sock bookuz.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
